@@ -3,19 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Vue JS</title>
+
+    <style>
+          body {
+             padding: 20px;
+          }
+    </style>
 </head>
 <body>
 
    <div id="app">
-       {{message}}
-       <div v-if="foods.length > 0">
-           <div v-for="(item, index) in foods" :key="index">
-                <p>{{item}}</p>
-           </div>
-       </div>
- 
+     <div class="mb-1">
+        <form  @submit.prevent="addItemToArray">
+            <input placeholder="Write something..." class="form-control" type="text" v-model="item">
+            <button class="btn btn-primary my-1" type="submit">Add Item</button>
+        </form>
+      
+     </div> 
+       <div>
+            <table
+            class="table table-striped" 
+             style="border-collapse: collapse;"
+             width="100%" border="1">
+             <thead>
+                  <th scope="col">Name</th>
+                  <th scope="col">Actions</th>
+             </thead>
+                 <tbody>
+                       
+                       <tr v-for="(item, index) in foods" :key="index">
+                        <td 
+                         style="width: 70%;"
+                         :colspan="index === editIndex ? 2 : 1"
+                         ><span v-if="index !== editIndex">
+                            {{item}}</span>
+                            <form style="display: block;" v-if="editMode && editIndex === index " @submit.prevent="updataArray">
+                                <input class="form-control" style="display: block; width: 99%;"  type="text"  v-model="editItem">
+                                <button  hidden type="submit">Update</button>
+                            </form>
+                        </td>
+                    
+
+                        <td v-if="editIndex !== index"
+                         style="text-align: end;"
+                         >
+                          <button class="btn btn-primary m-1" @click="editItemFu(index)">Edit</button>
+                          <button class="btn btn-danger"  @click="removeFromArray(index)">X</button>
+                        </td>
+
+                           
+                       </tr>
+                 </tbody>
+            </table>
+
+           <!-- <div v-for="(item, index) in foods" :key="index">
+                <div
+                
+                 :style="{
+                    display:'flex',
+                    justifyContent:'space-between',
+                    marginTop:'5px'
+                  }"
+                 >
+                  <span v-if="index !== editIndex">{{item}}</span>
+                 <form v-if="editMode && editIndex === index " @submit.prevent="updataArray">
+                    <input type="text"  v-model="editItem">
+                    <button hidden type="submit">Update</button>
+                </form>
+                 <button v-if="editIndex !== index" @click="editItemFu(index)">Edit</button>
+                 <button v-if="index !== editIndex" @click="removeFromArray(index)">X</button>
+              </div>
+           </div> -->
+       </div> 
+
+       <!-- <div>
+        <div>
+          <form @submit.prevent="addItemToArray">
+            <input type="text" v-model="item">
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div v-if="foods.length > 0">
+          <div v-for="(food, index) in foods" :key="index">
+            <div
+              :style="{
+                display: 'flex',
+                justifyContent: 'space-between'
+              }"
+            >
+              <span v-if="index !== editingIndex">{{ food }}</span>
+              <input
+                v-else
+                type="text"
+                v-model="editedItem"
+              >
+              <button @click="editItem(index)">{{ index === editingIndex ? 'Save' : 'Edit' }}</button>
+              <button @click="removeFromArray(index)">X</button>
+              <button @click="fillInput(food)">Fill Input</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  -->
    </div>
 
    <script
@@ -25,3 +116,6 @@
     <script src="./app.js"></script>
 </body>
 </html>
+
+
+
