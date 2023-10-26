@@ -1,7 +1,9 @@
 const app = Vue.createApp({
+    
 
     data () {
         return {
+            loader: false,
             item: '',
             foods:JSON.parse(localStorage.getItem('foods')) || [],
             editMode: false,
@@ -42,7 +44,39 @@ const app = Vue.createApp({
            this.editIndex = index
        },
 
+    },
+  
+    beforeCreate: function () {
+        console.log('beforeCreated')
+    },
+    created: function () {
+        console.log('created')
+    },
+
+    beforeMount: function () {
+        console.log('beforeMount')
+    },
+
+    mounted: function () {
+        console.log('mounted')
+    },
+
+    beforeUpdate: function () {
+        console.log('beforeUpdate')
+    },
+
+    updated: function () {
+        console.log('updated')
+    },
+
+    beforeDestroy: function () {
+        console.log('beforeDestroy')
+    },
+
+    destroyed: function () {
+        console.log('destroyed')
     }
+  
 })
 
 app.mount("#app")
