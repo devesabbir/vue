@@ -37,6 +37,7 @@
                        
                        <tr v-for="(item, index) in foods" :key="index">
                         <td 
+                         @dblclick="editItemFu(index)"
                          style="width: 70%;"
                          :colspan="index === editIndex ? 2 : 1"
                          ><span v-if="index !== editIndex">
@@ -51,7 +52,6 @@
                         <td v-if="editIndex !== index"
                          style="text-align: end;"
                          >
-                          <button class="btn btn-primary m-1" @click="editItemFu(index)">Edit</button>
                           <button class="btn btn-danger"  @click="removeFromArray(index)">X</button>
                         </td>
 
