@@ -8,13 +8,14 @@ const app = Vue.createApp({
             foods:JSON.parse(localStorage.getItem('foods')) || [],
             editMode: false,
             editIndex:-1,
-            editItem: ''
-          
+            editItem:'',
+            games:['Cricket', 'Football', 'BasketBall'],
+            checked:[]
+
         }
     },
 
     methods: {
-
        addItemToArray: function () {
         if (this.item) {
           const arry = this.foods
@@ -43,6 +44,16 @@ const app = Vue.createApp({
            this.editMode = true
            this.editIndex = index
        },
+
+       handleChange: function (e) {
+          const value = e.target.value
+          const index = this.checked.findIndex((item) => item === value)
+          if (index === -1) {
+             this.checked.push(value)
+          } else {
+             this.checked.splice(index, 1)
+          }
+       }
 
     },
   

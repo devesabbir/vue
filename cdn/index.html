@@ -60,55 +60,15 @@
                  </tbody>
             </table>
 
-           <!-- <div v-for="(item, index) in foods" :key="index">
-                <div
-                
-                 :style="{
-                    display:'flex',
-                    justifyContent:'space-between',
-                    marginTop:'5px'
-                  }"
-                 >
-                  <span v-if="index !== editIndex">{{item}}</span>
-                 <form v-if="editMode && editIndex === index " @submit.prevent="updataArray">
-                    <input type="text"  v-model="editItem">
-                    <button hidden type="submit">Update</button>
-                </form>
-                 <button v-if="editIndex !== index" @click="editItemFu(index)">Edit</button>
-                 <button v-if="index !== editIndex" @click="removeFromArray(index)">X</button>
-              </div>
-           </div> -->
+        
        </div> 
 
-       <!-- <div>
         <div>
-          <form @submit.prevent="addItemToArray">
-            <input type="text" v-model="item">
-            <button type="submit">Submit</button>
-          </form>
+            <input @change="handleChange($event)" :key="c" v-for="c in games" type="checkbox" :value="c" />
         </div>
-        <div v-if="foods.length > 0">
-          <div v-for="(food, index) in foods" :key="index">
-            <div
-              :style="{
-                display: 'flex',
-                justifyContent: 'space-between'
-              }"
-            >
-              <span v-if="index !== editingIndex">{{ food }}</span>
-              <input
-                v-else
-                type="text"
-                v-model="editedItem"
-              >
-              <button @click="editItem(index)">{{ index === editingIndex ? 'Save' : 'Edit' }}</button>
-              <button @click="removeFromArray(index)">X</button>
-              <button @click="fillInput(food)">Fill Input</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  -->
+        <ul>
+            <li v-for="i in checked" :key="i" >{{i}}</li> 
+        </ul>
    </div>
 
    <script
