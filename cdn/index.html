@@ -62,13 +62,20 @@
 
         
        </div> 
-
-        <div>
-            <input @change="handleChange($event)" :key="c" v-for="c in games" type="checkbox" :value="c" />
+         <div v-if="loader">
+             loading...
+         </div>
+        <div v-if="!loader">
+            <div :key="c" v-for="c in games">
+               <input :id="c" @change="handleChange($event)" type="checkbox" :value="c" />
+               <label :for="c">{{c}}</label>
+            </div>
+           
+             <ul>
+               <li v-for="i in checked" :key="i" >{{i}}</li> 
+            </ul>
         </div>
-        <ul>
-            <li v-for="i in checked" :key="i" >{{i}}</li> 
-        </ul>
+       
    </div>
 
    <script

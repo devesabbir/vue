@@ -3,7 +3,7 @@ const app = Vue.createApp({
 
     data () {
         return {
-            loader: false,
+            loader: true,
             item: '',
             foods:JSON.parse(localStorage.getItem('foods')) || [],
             editMode: false,
@@ -53,9 +53,12 @@ const app = Vue.createApp({
           } else {
              this.checked.splice(index, 1)
           }
-       }
+       },
+
 
     },
+
+
   
     beforeCreate: function () {
         console.log('beforeCreated')
@@ -70,6 +73,7 @@ const app = Vue.createApp({
 
     mounted: function () {
         console.log('mounted')
+        this.loader = false
     },
 
     beforeUpdate: function () {
@@ -77,6 +81,7 @@ const app = Vue.createApp({
     },
 
     updated: function () {
+        console.log('updated')
         console.log('updated')
     },
 
